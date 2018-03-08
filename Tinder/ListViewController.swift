@@ -9,11 +9,12 @@
 import UIKit
 
 class ListViewController: UIViewController {
+    
+    var likedName = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        print(likedName)
     }
 
     override func didReceiveMemoryWarning() {

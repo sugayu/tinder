@@ -43,7 +43,13 @@ class ViewController: UIViewController {
         basicCard.center = centerOfCard
         basicCard.transform = .identity
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "PushList" {
+            let vc =  segue.destination as! ListViewController
+            vc.likedName = likedName
+        }
+    }
     
     @IBAction func swipeCard(_ sender: UIPanGestureRecognizer) {
         let card = sender.view!
@@ -77,7 +83,7 @@ class ViewController: UIViewController {
                 likeImageView.alpha = 0
                 selectedCardCount += 1
                 if selectedCardCount >= people.count {
-                    print(likedName)
+                    performSegue(withIdentifier: "PushList", sender: self)
                 }
                 return
             //右に大きくスワイプ
@@ -90,7 +96,7 @@ class ViewController: UIViewController {
                 likedName.append(name[selectedCardCount])
                 selectedCardCount += 1
                 if selectedCardCount >= people.count {
-                    print(likedName)
+                    performSegue(withIdentifier: "PushList", sender: self)
                 }
                 return
             }
